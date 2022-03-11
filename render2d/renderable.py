@@ -17,3 +17,4 @@ class Renderable:
     def render(self, bool_array, buffer, y_min_index, x_min_index):
         indices_y, indices_x = np.where(bool_array)
         buffer[indices_y + y_min_index, indices_x + x_min_index, :] = self.color
+

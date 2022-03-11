@@ -1,6 +1,7 @@
 import numpy as np
 from render2d import circle
 from render2d import rectangle
+from render2d import polygon
 
 class Layer:
     # this class defines a single layer within a canvas
@@ -36,3 +37,7 @@ class Layer:
 
     def add_rectangle(self, y, x, height, width, color):
         self.objects.append(rectangle.Rectangle(y, x, height, width, color))
+
+    def add_polygon(self, coordinates, color):
+        self.objects.append(polygon.Polygon(coordinates, color))
+
