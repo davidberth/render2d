@@ -32,6 +32,9 @@ class Canvas:
         for key, item in self.layers.items():
             print (f'rendering layer {key}')
             self.output += item.render(height, width)
+
+        # clamp the values to 0...1.0
+        self.output[self.output>1.0] = 1.0
         self.output*=255.0
         print (np.max(self.output))
 
