@@ -2,11 +2,13 @@ from render2d.renderable import Renderable
 import numpy as np
 
 class Circle(Renderable):
-    def __init__(self, center_y, center_x, radius, color):
+    def __init__(self, center_y, center_x, radius, edge_width, color, edge_color):
         self.center_y = center_y
         self.center_x = center_x
         self.radius = radius
+        self.edge_width = edge_width
         self.color = color
+        self.edge_color = edge_color
 
         self.radius_squared = radius * radius
         self.get_bounds()
@@ -19,7 +21,9 @@ class Circle(Renderable):
         self.x_max = self.center_x + self.radius
 
     def intersect(self, coords):
-        bool_array = (coords[:,:,0] - self.center_y)**2 + (coords[:,:,1] - self.center_x)**2 < self.radius_squared
-        return bool_array
+        edge_distance_array = (coords[:,:,0] - self.center_y)**2 + (coords[:,:,1] - self.center_x)**2
+        bool_array =  edge_distance_array < self.radius_squared
+        edge_distance_array = np.abs( np.sqrt(edge_distance_array) - self.radius )
+        return bool_array, edge_distance_array
 
 

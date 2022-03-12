@@ -38,7 +38,7 @@ class Canvas:
     def save(self, file_name):
         if self.output is None:
             print ('Please render the canvas before saving it to a file')
-        print (f'Canvas size is {self.output.size}')
+        print (f'Canvas size is {self.output.shape}')
         img = Image.fromarray(self.output[:,:,:3].astype(np.uint8), 'RGB')
         img.save(file_name)
         img.show()
